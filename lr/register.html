@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="x-icon" href="HCC.ico">
+    <title>Register | Health Care Center</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+         /* Change background color to light green */
+         body {
+            background-color: hsl(171, 100%, 39%); /* Light green */
+        }
+        
+                 /* Change the card background color */
+    .signup-content {
+        background-color: hsl(171, 88%, 77%); /* White or any color you prefer */
+        padding: 20px;
+        border-radius: 10px; /* Rounded edges */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    }
+    
+        /* Container for dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown button with rounded corners */
+        .dropbtn {
+            background-color: #000;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            border-radius: 10px; /* Rounded edges */
+            text-align: left;
+        }
+
+        /* Dropdown content (hidden by default) with rounded corners */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 10px; /* Rounded edges */
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 10px; /* Rounded edges on hover */
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Show the dropdown when hovering */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the button background color on hover */
+        .dropdown:hover .dropbtn {
+            background-color: #000;
+        }
+
+            /* Style for form fields to make them rounded */
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group input[type="number"] {
+        width: 100%;
+        padding: 10px 20px; /* Increase padding for better spacing */
+        border: 1px solid #ccc; /* Light gray border */
+        border-radius: 10px; /* Rounded corners */
+        box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form" action="register.php">
+
+                            <div class="dropdown">
+                                <!-- Button that shows the currently selected department -->
+                                <button class="dropbtn" id="selected-department">Select Registration Role</button>
+                                <div class="dropdown-content">
+                                    <!-- Links representing departments -->
+                                    <a href="#" onclick="selectDepartment('Doctor')">Doctor</a>
+                                    <a href="#" onclick="selectDepartment('Nurse')">Nurse</a>
+                                    <a href="#" onclick="selectDepartment('Receptionist')">Receptionist</a>
+                                    <a href="#" onclick="selectDepartment('Patient')">Patient</a>
+                                </div>
+                            </div><br><br>
+
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                            </div>
+
+                            <input type="hidden" name="role" id="role">
+
+                            <!-- Specialization field, hidden by default -->
+                            <div class="form-group" id="specialization-field" style="display: none;">
+                                <label for="specialization"><i class="zmdi zmdi-graduation-cap"></i></label>
+                                <input type="text" name="specialization" id="specialization" placeholder="Specialization"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="age"><i class="zmdi zmdi-calendar"></i></label>
+                                <input type="number" name="age" id="age" placeholder="Your Age" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact"><i class="zmdi zmdi-phone"></i></label>
+                                <input type="text" name="contact" id="contact" placeholder="Your Contact" required/>
+                            </div>
+
+                            
+
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="tc.html" class="term-service" target="_blank">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" style="background-color: #4CAF50;" value="Register"/>
+                            </div>
+                        </form>
+
+                        
+
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/Register page.jpg" alt="sing up image"></figure>
+                        <p style="text-align: center;">I Already Have an Account</p>
+                        <a href="login.html" class="signup-image-link">Login</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+ 
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+
+     <!-- JavaScript to update button text based on selection -->
+     <script>
+        function selectDepartment(department) {
+            // Get the button element and hidden role input field
+            var button = document.getElementById('selected-department');
+            var roleInput = document.getElementById('role');
+            var specializationField = document.getElementById('specialization-field');
+
+            // Set the text of the button to the selected department
+            button.innerHTML = department;
+
+            // Set the role value
+            roleInput.value = department;
+
+            // Show or hide the specialization field based on the selected department
+            if (department === 'Doctor') {
+                specializationField.style.display = 'block'; // Show specialization field
+            } else {
+                specializationField.style.display = 'none'; // Hide specialization field
+            }
+        }
+
+        // Log form submission
+        document.getElementById('register-form').onsubmit = function(e) {
+            console.log("Form submitted with role: " + document.getElementById('role').value);
+        }
+    </script>
+
+</body>
+</html>
